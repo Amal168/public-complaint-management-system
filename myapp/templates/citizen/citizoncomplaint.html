@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .headder{
+        background-color: #123665;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+
+    label{
+        font-weight: 500;
+        font-family: sans-serif;
+    }
+    .combox{
+        margin: 30px;
+        border: 1px solid black;
+        justify-content: center;
+        padding: 30px ;
+        border-radius:10px ;
+
+    }
+    textarea{
+        margin-top: 30px;
+        margin-bottom: 30px;
+        width:100%;
+
+    }
+    button{
+        background-color: #123665;
+        color: white;
+        width: 200px;
+        height: 40px;
+        border: none;
+        border-radius: 10px;
+    }
+
+.complaint-heading{
+    font-size: 20px;
+    font-family: sans-serif;
+    color:  #123665;
+    padding: 5px;
+    border-radius: 2px;
+}
+.complaint-card{
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 15px;
+    margin: 10;
+    margin-bottom: 10px;
+    background-color: aliceblue;
+}
+.complaint-card:hover{
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
+}
+.massagebox{
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+
+
+</style>
+<body>
+            {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+    <div class="headder">
+        <h1>Complaint Box</h1>
+    </div>
+    <div class="combox">
+        <form action="/myapp/citizen_complaintsent/" method="post">
+            {%csrf_token%}
+            <label for="">Enter your complaints here</label><br>
+        <textarea name="complaints" id="" rows="5" cols="10"></textarea><br>
+        <button>Submit</button><br>
+        </form>
+    </div>
+<h1 class="complaint-heading">Your complaints</h1>
+    {%for i in data%}
+    
+    <div class="complaint-card">
+        <p>Your complaints:</p>
+        <div class="massagebox">{{i.complaints}}</div>
+        {%if i.replay != 'pending' %}
+        <p>Replay:</p>
+        <div class="massagebox">{{i.replay}}</div>
+        {%endif%}
+    </div>
+{%endfor%}
+</body>
+</html>

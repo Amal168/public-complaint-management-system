@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .replaybox{
+        border: 1px solid black;
+        border-radius: 15px;
+        padding: 10px;
+        width: min-content;
+    }
+    input{
+        width: 400px;
+        height: 100px;
+        padding: 20px;
+        margin-bottom: 10px;
+    }
+    button{
+        background-color: #123665;
+        width: 190px;
+        height:40px;
+        color: white;
+        border: none;
+        border-radius: 15px;
+    }
+    button:hover{
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        transform: 2s;
+    }
+    .Headder{
+        background-color: #123665;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+</style>
+<body>
+    <h1 class="Headder">Send your replays</h1>
+    <div class="replaybox">
+        <h1 style="color: #123665;">Replay</h1>
+        <form action="/myapp/govt_replay/" method="post">
+            {%csrf_token%}
+            <input type="hidden" name="id" value="{{data.id}}">
+            <input type="text" name="replay" id="" value="{{data.replay}}"><br>
+        <button>Send Replay</button>
+        </form>
+    </div>
+</body>
+</html>

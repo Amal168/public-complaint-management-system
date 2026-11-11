@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaints</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 25px;
+            background-color: #f4f6fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            background-color: #153966;
+            color: white;
+            text-align: center;
+            padding: 22px;
+            margin: 0 0 25px;
+            border-radius: 8px;
+            font-size: 28px;
+        }
+
+        .table-box {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 750px;
+        }
+
+        th {
+            background-color: #153966;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 15px;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e1e6ee;
+            color: #344054;
+            vertical-align: middle;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f7f9fc;
+        }
+
+        tr:hover {
+            background-color: #edf3fc;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 150px;
+        }
+
+        .user-info img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #d9e2ef;
+        }
+
+        .user-info span {
+            font-weight: bold;
+            color: #153966;
+        }
+
+        .reply {
+            color: #526174;
+            max-width: 220px;
+        }
+
+        .action a {
+            display: inline-block;
+            background-color: #153966;
+            color: white;
+            text-decoration: none;
+            padding: 9px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .action a:hover {
+            background-color: #24558f;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 12px;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Complaints</h1>
+
+        <div class="table-box">
+            <table>
+
+                <tr>
+                    <th>No</th>
+                    <th>Date</th>
+                    <th>User</th>
+                    <th>Complaint</th>
+                    <th>Reply</th>
+                    <th>Option</th>
+                </tr>
+
+                {% for i in data %}
+                <tr>
+
+                    <td>{{ forloop.counter }}</td>
+
+                    <td>{{ i.date }}</td>
+
+                    <td>
+                        <div class="user-info">
+                            <img src="{{ i.CITIZEN.photo.url }}" alt="User">
+                            <span>{{ i.CITIZEN.name }}</span>
+                        </div>
+                    </td>
+
+                    <td>{{ i.complaints }}</td>
+
+                    <td class="reply">{{ i.replay }}</td>
+
+                    <td class="action">
+                        <a href="/myapp/govtreplay_view/{{ i.id }}">
+                            Send Reply
+                        </a>
+                    </td>
+
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+
+    </div>
+
+</body>
+</html>

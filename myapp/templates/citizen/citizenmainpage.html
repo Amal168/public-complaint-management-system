@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f5fa;
+        }
+
+        .header {
+            background-color: #123665;
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+           
+
+        }
+
+        .header h2 {
+            margin: 0;
+        }
+
+        .header p {
+            margin: 5px 0;
+        }
+
+        .user {
+            background-color: #ffffff;
+            color: #123665;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+        }
+
+        .welcome {
+            background-color: white;
+            padding: 25px;
+            border-left: 5px solid #2166b5;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        .welcome h2 {
+            color: #123665;
+            margin: 0 0 10px;
+        }
+
+        .welcome p {
+            color: #555;
+        }
+
+        .menu {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .menu a {
+            background-color: white;
+            color: #123665;
+            text-decoration: none;
+            padding: 25px;
+            width: 180px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .menu a:hover {
+            background-color: #123665;
+            color: white;
+        }
+
+        .messages {
+            text-align: center;
+            color: green;
+            list-style: none;
+            padding: 10px;
+        }
+
+        .footer {
+            background-color: #123665;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 80px;
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            .menu {
+                justify-content: center;
+            }
+
+            .menu a {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div>
+            <h2>Public Complaint Management System</h2>
+            <p>Citizen Portal</p>
+        </div>
+
+        <div class="user">
+            {{data.name}}
+        </div>
+    </div>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div class="container">
+
+        <div class="welcome">
+            <h2>Welcome, {{data.name}}!</h2>
+            <p>Welcome to your citizen dashboard. Manage your profile and account here.</p>
+        </div>
+
+        <div class="menu">
+
+            <a href="/myapp/citizenupdate_view/">
+                <h3>My Profile</h3>
+                <p>Update your personal details</p>
+            </a>
+
+            <a href="/myapp/citizenchangepass_view/">
+                <h3>Change Password</h3>
+                <p>Update your account password</p>
+            </a>
+
+            <a href="/myapp/citizen_home/">
+                <h3>View Citizens</h3>
+                <p>View citizen details</p>
+            </a>
+
+            <a href="/myapp/citizen_complaints/" >
+                <h3>Complaint box</h3>
+                <p>Sent your complants Here</p>
+            </a>
+
+            <a href="/myapp/citizen_logout/" onclick="return confirm('are you sure to leave')">
+                <h3>Logout</h3>
+                <p>Exit your account</p>
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        © 2026 Public Complaint Management System
+    </div>
+
+</body>
+</html>
+

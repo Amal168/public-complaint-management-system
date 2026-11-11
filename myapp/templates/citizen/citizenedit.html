@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .headding{
+        background-color: #123665;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .form {
+    width: 80%;
+    max-width: 350px;
+    align-items: center;
+    margin: 25px auto;
+    box-sizing: border-box;
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Text, Number, Email, Password, Date and Telephone */
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="tel"] {
+    width: 90%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    outline: none;
+    margin-top: 8px;
+    box-sizing: border-box;
+}
+
+/* Focus Effect */
+
+input:focus, textarea:focus, select:focus {
+    border-color: #2166b5;
+    box-shadow: 0 0 5px rgba(33, 102, 181, 0.3);
+}
+
+/* File Input */
+
+input[type="file"] {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 14px;
+    margin-top: 8px;
+    box-sizing: border-box;
+}
+
+input[type="file"]::file-selector-button {
+    background-color: #123665;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #2166b5;
+}
+
+/* Radio Button */
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #333;
+    font-size: 15px;
+    font-weight: normal;
+    margin: 0;
+    cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: #123665;
+    cursor: pointer;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+input[type="radio"] {
+    accent-color: #123665;
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+}
+
+
+
+
+/* Labels */
+
+label {
+    display: block;
+    color: #123665;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+button {
+    margin: 30px 60px;
+    background-color: #123665;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Hover Effect */
+button:hover {
+    background-color: #2166b5;
+}
+
+/* Click Effect */
+button:active {
+    background-color: #0b2547;
+}
+
+@media screen and (max-width:600px) {
+    .headding{
+        width: 100%;
+        padding: 15px;
+    }
+    .form{
+        width: 90%;
+        margin: 25px auto;
+    }
+
+    
+}
+
+
+
+</style>
+<body>
+        {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<div class="headding">
+        <h1>CITIZEN UPDATE </h1>
+
+
+</div>
+    <div class="form">
+        <form action="/myapp/citizen_update/" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+            <label for="">name</label>
+            <input type="text" name="name" value="{{data.name}}"><br>
+            <label for="">email</label>
+            <input type="email" name="email" value="{{data.email}}"><br>
+          
+            <label for="">mobile</label>
+            <input type="number" name="mobile" value="{{data.mobile}}"><br>
+            <label for="">Date of Birth</label>
+            <input type="date" name="dob" value="{{data.dob|date:'Y-m-d'}}"><br>
+
+            <label>Gender</label>
+
+<div class="radio-group">
+
+    <label>
+        <input type="radio" name="gender" value="male"
+        {% if data.gender == "male" %}checked{% endif %}>
+        Male
+    </label>
+
+    <label>
+        <input type="radio" name="gender" value="female"
+        {% if data.gender == "female" %}checked{% endif %}>
+        Female
+    </label>
+
+</div>
+            <label for="">place</label>
+            <input type="text" name="place" value="{{data.place}}"><br>
+            <label for="">district</label>
+            <input type="text" name="district" value="{{data.district}}"><br>
+            <label for="">pincode</label>
+            <input type="number" name="pincode" value="{{data.pincode}}"><br>
+            <label for="">photo</label>
+            <img src="{{data.photo.url}}" alt="" height="100" width="100" >
+            <input type="file" name="photo"><br>
+            <button>Save change</button>
+        </form>
+    </div>
+</body>
+</html>

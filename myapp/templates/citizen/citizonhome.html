@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Home</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f1f5f9;
+        }
+
+        .appbar {
+            background-color: #123665;
+            color: white;
+            padding: 18px 30px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+        }
+
+        .appbar h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+
+        .profile-card {
+            background-color: white;
+            width: 600px;
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .profile-header {
+            background-color: #123665;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .profile-header img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            margin-bottom: 10px;
+        }
+
+        .profile-header h2 {
+            margin: 5px;
+        }
+
+        .profile-header p {
+            color: #dbeafe;
+            margin: 5px;
+        }
+
+        .profile-details {
+            padding: 25px 35px;
+        }
+
+        .profile-details h3 {
+            color: #123665;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 12px;
+            margin-top: 0;
+        }
+
+        .detail {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 13px 5px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .detail label {
+            color: #64748b;
+            font-weight: bold;
+        }
+
+        .detail span {
+            color: #1e293b;
+            text-align: right;
+            overflow-wrap: anywhere;
+        }
+
+        @media (max-width: 500px) {
+            .appbar h2 {
+                font-size: 17px;
+            }
+
+            .profile-details {
+                padding: 20px;
+            }
+
+            .detail {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .detail span {
+                text-align: left;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="appbar">
+        <h2>PUBLIC COMPLAINT MANAGEMENT SYSTEM</h2>
+    </div>
+
+    <div class="main">
+
+        <div class="profile-card">
+
+            <div class="profile-header">
+
+                <img src="{{data.photo.url}}" alt="Citizen Photo">
+
+                <h2>{{data.name}}</h2>
+                <p>Citizen Profile</p>
+
+            </div>
+
+            <div class="profile-details">
+
+                <h3>Personal Information</h3>
+
+                <div class="detail">
+                    <label>Email</label>
+                    <span>{{data.email}}</span>
+                </div>
+
+                <div class="detail">
+                    <label>Mobile</label>
+                    <span>{{data.mobile}}</span>
+                </div>
+
+                <div class="detail">
+                    <label>Date of Birth</label>
+                    <span>{{data.dob}}</span>
+                </div>
+
+                <div class="detail">
+                    <label>Gender</label>
+                    <span>{{data.gender}}</span>
+                </div>
+
+                <div class="detail">
+                    <label>Place</label>
+                    <span>{{data.place}}</span>
+                </div>
+
+                <div class="detail">
+                    <label>District</label>
+                    <span>{{data.district}}</span>
+                </div>
+
+                <div class="detail">
+                    <label>Pincode</label>
+                    <span>{{data.pincode}}</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
